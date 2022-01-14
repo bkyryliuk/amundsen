@@ -59,6 +59,7 @@ S3_BUCKET_NAME = os.getenv('S3_BUCKET_NAME')
 assert S3_BUCKET_NAME, "A S3 bucket is needed to load the data from"
 S3_DATA_PATH = os.getenv("S3_DATA_PATH", "amundsen_data")
 AWS_REGION = os.environ.get("AWS_REGION", 'us-east-1')
+AWS_STS_ENDPOINT_URL = os.getenv("AWS_STS_ENDPOINT_URL")
 
 es = Elasticsearch(
     '{}:{}'.format(es_host, es_port)
@@ -108,6 +109,7 @@ def run_csv_job(file_loc, job_name, model):
             NeptuneCSVPublisher.AWS_BASE_S3_DATA_PATH: S3_DATA_PATH,
             NeptuneCSVPublisher.NEPTUNE_HOST: NEPTUNE_ENDPOINT,
             NeptuneCSVPublisher.AWS_IAM_ROLE_NAME: neptune_iam_role_name,
+            NeptuneCSVPublisher.AWS_STS_ENDPOINT_URL: AWS_STS_ENDPOINT_URL,
             NeptuneCSVPublisher.AWS_REGION: AWS_REGION,
             NeptuneCSVPublisher.AWS_ACCESS_KEY: aws_access_key,
             NeptuneCSVPublisher.AWS_SECRET_ACCESS_KEY: aws_access_secret,
@@ -150,6 +152,7 @@ def run_table_column_job(table_path, column_path):
             NeptuneCSVPublisher.AWS_BASE_S3_DATA_PATH: S3_DATA_PATH,
             NeptuneCSVPublisher.NEPTUNE_HOST: NEPTUNE_ENDPOINT,
             NeptuneCSVPublisher.AWS_IAM_ROLE_NAME: neptune_iam_role_name,
+            NeptuneCSVPublisher.AWS_STS_ENDPOINT_URL: AWS_STS_ENDPOINT_URL,
             NeptuneCSVPublisher.AWS_REGION: AWS_REGION,
             NeptuneCSVPublisher.AWS_ACCESS_KEY: aws_access_key,
             NeptuneCSVPublisher.AWS_SECRET_ACCESS_KEY: aws_access_secret,
@@ -193,6 +196,7 @@ def create_last_updated_job():
             NeptuneCSVPublisher.AWS_BASE_S3_DATA_PATH: S3_DATA_PATH,
             NeptuneCSVPublisher.NEPTUNE_HOST: NEPTUNE_ENDPOINT,
             NeptuneCSVPublisher.AWS_IAM_ROLE_NAME: neptune_iam_role_name,
+            NeptuneCSVPublisher.AWS_STS_ENDPOINT_URL: AWS_STS_ENDPOINT_URL,
             NeptuneCSVPublisher.AWS_REGION: AWS_REGION,
             NeptuneCSVPublisher.AWS_ACCESS_KEY: aws_access_key,
             NeptuneCSVPublisher.AWS_SECRET_ACCESS_KEY: aws_access_secret,
@@ -261,6 +265,7 @@ def create_dashboard_tables_job():
             NeptuneCSVPublisher.AWS_BASE_S3_DATA_PATH: S3_DATA_PATH,
             NeptuneCSVPublisher.NEPTUNE_HOST: NEPTUNE_ENDPOINT,
             NeptuneCSVPublisher.AWS_IAM_ROLE_NAME: neptune_iam_role_name,
+            NeptuneCSVPublisher.AWS_STS_ENDPOINT_URL: AWS_STS_ENDPOINT_URL,
             NeptuneCSVPublisher.AWS_REGION: AWS_REGION,
             NeptuneCSVPublisher.AWS_ACCESS_KEY: aws_access_key,
             NeptuneCSVPublisher.AWS_SECRET_ACCESS_KEY: aws_access_secret,

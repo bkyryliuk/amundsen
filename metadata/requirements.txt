@@ -1,7 +1,7 @@
 # Copyright Contributors to the Amundsen project.
 # SPDX-License-Identifier: Apache-2.0
 
-amundsen-gremlin>=0.0.13
+amundsen-gremlin @ git+https://github.com/bkyryliuk/amundsengremlin@bogdan/sts_support#amundsen-gremlin
 gremlinpython==3.4.12
 neo4j==1.7.6
 neotime==1.7.1
